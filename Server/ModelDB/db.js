@@ -4,8 +4,7 @@ mongoose.Promise = global.Promise;
 
 
 //mongoose.connect('mongodb://localhost:27017/instituteSignup');
-MONGODB_URI
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect('mongodb://satyendrak17:satyendrak17@ds119370.mlab.com:19370/institutesignup');
 //mongoose.connect("mongodb://satyendrak17:satyendrak17@ds151707.mlab.com:51707/heroku_dp3rmhx0/rentonclick");
 var instituteSignup = new mongoose.Schema(
 		{ 
