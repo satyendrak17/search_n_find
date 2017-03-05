@@ -18,7 +18,7 @@ var instituteSignup = new mongoose.Schema(
 				state : String,
 				city : String
 			},
-			//services_provided : [],
+			services_provided : [],
 			speciality : String
 		}
 	);
