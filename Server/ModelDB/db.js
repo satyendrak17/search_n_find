@@ -6,22 +6,53 @@ mongoose.Promise = global.Promise;
 //mongoose.connect('mongodb://localhost:27017/instituteSignup');
 mongoose.connect('mongodb://satyendrak17:satyendrak17@ds119370.mlab.com:19370/institutesignup');
 //mongoose.connect("mongodb://satyendrak17:satyendrak17@ds151707.mlab.com:51707/heroku_dp3rmhx0/rentonclick");
+
+// Adrress Schema..
+var addressSchema = new mongoose.Schema({
+	area_code : {
+		type : String,
+		required : true,
+	},
+	country : {
+		type : String,
+		required : true
+	},
+	state : {
+		type : String,
+		required : true
+	},
+	city : {
+		type : String,
+		required : true
+	}
+});
 var instituteSignup = new mongoose.Schema(
 		{ 
-			org_email_id: String,
+			org_email_id: {
+				type : String,
+				required : true,
+				index : {
+					unique:true,
+					dropDups : true
+				}
+			},
 			personal_email_id: String,
-			contact_number: Number,
+			contact_number: {
+				type : Number,
+				required : true,
+				unique : true,
+				dropDups : true
+			},
 			altername_number: Number,
 			address : {
-				area_code: String,
-				country : String,
-				state : String,
-				city : String
+				type : addressSchema,
+				required : true
 			},
 			services_provided : [],
-			speciality : String
+			speciality : String,
+			image_url : String
 		}
 	);
-var instituteSignupInfo = mongoose.model('Institute_Signup', instituteSignup);
+var instituteSignupInfo = mongoose.model("Institute_Signup", instituteSignup);
 
 module.exports.instituteSignupInfo = instituteSignupInfo; 
