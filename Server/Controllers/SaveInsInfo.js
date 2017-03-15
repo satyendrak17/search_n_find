@@ -1,18 +1,30 @@
 var instituteSignupInfo = require('../ModelDB/db').instituteSignupInfo;
 
 module.exports = function(req, res) {
+	let addresses = req.body.address;
+	let objTemp = {},
+		tmpAddrArr = [];
+	addresses.forEach(function(items) {
+		objTemp = {
+			"area_code": items.area_code,
+		    "country": items.country,
+		    "state": items.state,
+		    "city": items.city,
+		    "city_code" : items.city_code || '',
+		};
+		tmpAddrArr.push(objTemp);
+	});
+
 	var dataToSave = {
+		"org_name" : req.body.org_name || '',
+		"password" : req.body.password || '',
 		  "org_email_id":req.body.org_email_id,
 		  "personal_email_id":req.body.personal_email_id || '',
 		  "contact_number":req.body.contact_number,
 		  "altername_number":req.body.altername_number || 0,
 		  "speciality": req.body.speciality || '',
-		  "address": {
-		  	"area_code": req.body.address.area_code,
-		    "country": req.body.address.country,
-		    "state": req.body.address.state,
-		    "city": req.body.address.city
-		  },
+		  "address": tmpAddrArr || [],
+		  "about" : req.body.about || {},
 		  "services_provided" : req.body.services_provided || [],
 		    "image_url" : req.body.image_url || ''
 	}

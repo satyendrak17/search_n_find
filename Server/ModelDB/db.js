@@ -2,32 +2,25 @@ var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
+const DBSchemas = require('./DBModel');
 
 //mongoose.connect('mongodb://localhost:27017/instituteSignup');
 mongoose.connect('mongodb://satyendrak17:satyendrak17@ds119370.mlab.com:19370/institutesignup');
 //mongoose.connect("mongodb://satyendrak17:satyendrak17@ds151707.mlab.com:51707/heroku_dp3rmhx0/rentonclick");
 
 // Adrress Schema..
-var addressSchema = new mongoose.Schema({
-	area_code : {
-		type : String,
-		required : true,
-	},
-	country : {
-		type : String,
-		required : true
-	},
-	state : {
-		type : String,
-		required : true
-	},
-	city : {
-		type : String,
-		required : true
-	}
-});
+const addressSchema = DBSchemas.addressSchema;
+const aboutOrganisation = DBSchemas.aboutOrganisation;
 var instituteSignup = new mongoose.Schema(
 		{ 
+			org_name: {
+				type : String,
+				required : true
+			},
+			password : {
+				type : String,
+				required : true
+			},
 			org_email_id: {
 				type : String,
 				required : true,
@@ -44,9 +37,9 @@ var instituteSignup = new mongoose.Schema(
 				dropDups : true
 			},
 			altername_number: Number,
-			address : {
-				type : addressSchema,
-				required : true
+			address : [addressSchema],
+			about : {
+				type : aboutOrganisation
 			},
 			services_provided : [],
 			speciality : String,
