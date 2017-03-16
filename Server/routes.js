@@ -6,6 +6,6 @@ var deleteInstInfo = require('../Server/Controllers/DeleteInstInfo');
 module.exports = function route(app) {
 	app.get('/instituteInfo', inst_signup_info);
 	app.post('/saveInstInfo', SaveInsInfo);
-	app.put('/updateInstInfo', updInstInfo);
+	app.post('/updateInstInfo', updInstInfo);
 	app.delete('/deleteInstInfo/:id', deleteInstInfo);
 }

@@ -36,7 +36,10 @@ const aboutOrganisation = new Schema({
 		type : String,
 		required : true
 	},
-	working_hours : String
+	working_hours : String,
+	additional_info : {
+		type : String
+	}
 });
 module.exports = {
 	addressSchema : addressSchema,
